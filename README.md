@@ -31,13 +31,14 @@ git clone https://github.com/agillis/esphome-modular-lvgl-buttons.git
 Grag a file from the demos directory that matches your screen and move it up with the rest of your ESPhome YAML files for your devicecs. For example if you have a Guition esp32-s3-4848s040
 
 ```
-cp ./esphome-modular-lvgl-buttons/hardware/guition-esp32-s3-4848s040.yaml .
+cp esphome-modular-lvgl-buttons/example_code/guition-esp32-s3-4848s040-display_modular.yaml .
 ```
 
 Edit the file and change the name then build and deploy to your screen using serial or over Wi-Fi.
 
 ```
-esphome run guition-esp32-s3-4848s040.yaml --device 192.168.1.100
+esphome compile guition-esp32-s3-4848s040-display_modular.yaml
+esphome run guition-esp32-s3-4848s040-display_modular.yaml --device 192.168.1.100
 ```
 
 ## Downloading the code in Home Assistant
