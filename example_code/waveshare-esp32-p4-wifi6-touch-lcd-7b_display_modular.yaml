@@ -1,4 +1,4 @@
-# Substitution variables used through the codebase
+# Substitution variables used throughout the codebase
 substitutions:
   icon_font: mdi_icons_40
   text_font: nunito_24
@@ -30,7 +30,6 @@ substitutions:
   # Screen Size
   screen_height: 600
   screen_width: 1024
-  byte_order: little_endian
 
 esphome:
   name: "waveshare-esp32-p4-touch-lcd-7b"
@@ -46,14 +45,27 @@ esphome:
 
 logger:
   level: debug
+  logs:
+    lvgl: info
+  hardware_uart: UART0
 
-# Time update script - This is run once per second. Use it to update any time related labels.
+# Time update script - This is run once per second. 
+# Use it to update any time related labels.
 script:
   - id: time_update
     then:
       - lambda: |-
           // No operation
 
+# Some screens need little_endian byte order and some need big_endian
+# this sets the byte order for all the images loaded in this file and the packages as well
+image:
+  defaults:
+    byte_order: little_endian
+
+# -------------------------------------------------------------------------
+# Packages - add more if you need more buttons or features
+# -------------------------------------------------------------------------
 packages:
   # Generic configuration for ESP32 screens
   # SDL has no Wi-Fi
@@ -82,7 +94,6 @@ packages:
 
   # This section will Update button state and relay state from Home Assistant
   # Any button that has real time updates needs a section here
-
 
   # Button 2 - Standard light button with state updates
   button_2_state: !include
@@ -144,7 +155,7 @@ lvgl:
 # Fonts and graphics
 # -------------------------------------------------------------------------
 
-# I you want to use other MDI icons add them to the list here
+# If you want to use other MDI icons add them to the list here
 font:
   # http://materialdesignicons.com/cdn/7.4.47/
   - file: 'https://github.com/Templarian/MaterialDesign-Webfont/raw/v7.4.47/fonts/materialdesignicons-webfont.ttf'
@@ -165,6 +176,4 @@ font:
       $mdi_bed,  # mdi-bed
       $mdi_white_balance_sunny,  # mdi-white-balance-sunny
       $mdi_brightness_6,  # mdi-brightness-6
-
     ]
- 
